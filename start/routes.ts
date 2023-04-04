@@ -4,15 +4,17 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-Route.get('/news', 'ArticlesController.view').as('news.view')
+Route.get('/news', 'ArticlesController.view').as('news_view')
 
-Route.post('/news', ({ response }) => {
-  // const { email, password } = request.body();
-  return response.redirect('/news')
-}).as('news.post')
+Route.get('/news/create', 'ArticlesController.create').as('news_create')
+
+Route.post('/news', ({ request, response }) => {
+  return request.body()
+  // return response.redirect('/news')
+}).as('news_post')
 
 Route.patch('news/:id', ({ params }) => {
   return { params }
 })
   .where('id', { match: /^[0-9]+$/, cast: (id) => Number(id) })
-  .as('news.patch')
+  .as('news_patch')
