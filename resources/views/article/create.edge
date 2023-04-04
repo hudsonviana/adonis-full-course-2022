@@ -11,7 +11,7 @@
 
   <form action="{{ route('news_store') }}" method="POST">
     {{ csrfField() }}
-    <input type="text" name="title" id="" placeholder="Tile">
+    <input type="text" name="title" id="" placeholder="Title">
     <input type="file" name="image" id="">
     <textarea name="content" id="" cols="30" rows="10" placeholder="Content"></textarea>
     <button type="submit">Create</button>

@@ -9,9 +9,11 @@
 <body>
   <h1>Boas notícias</h1>
   {{--  loop de artigos  --}}
-  @each(article in articles)
-    <h3>{{ article.title }}</h3>
-  @end
-
+  <ul>
+    @each(article in articles)
+      <li>{{ article.title }} - {{ article.content }}</li>
+    @end
+  </ul>
+    
 </body>
 </html>

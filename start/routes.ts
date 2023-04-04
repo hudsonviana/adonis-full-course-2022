@@ -8,10 +8,7 @@ Route.get('/news', 'ArticlesController.view').as('news_view')
 
 Route.get('/news/create', 'ArticlesController.create').as('news_create')
 
-Route.post('/news', ({ request, response }) => {
-  return request.body()
-  // return response.redirect('/news')
-}).as('news_store')
+Route.post('/news/store', 'ArticlesController.store').as('news_store')
 
 Route.patch('news/:id', ({ params }) => {
   return { params }
