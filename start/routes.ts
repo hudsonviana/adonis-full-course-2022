@@ -1,17 +1,12 @@
 import Route from '@ioc:Adonis/Core/Route'
-import Database from '@ioc:Adonis/Lucid/Database'
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-Route.get('/news', async ({ view }) => {
-  const articles = await Database.from('articles').select('*')
+Route.get('/news', 'ArticlesController.view').as('news.view')
 
-  return view.render('news/view', { articles })
-}).as('news.view')
-
-Route.post('/news', ({ request, response }) => {
+Route.post('/news', ({ response }) => {
   // const { email, password } = request.body();
   return response.redirect('/news')
 }).as('news.post')
