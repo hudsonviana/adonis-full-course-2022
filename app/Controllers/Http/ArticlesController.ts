@@ -18,4 +18,15 @@ export default class ArticlesController {
     await Database.table('articles').insert(payload)
     response.redirect().back()
   }
+
+  public async edit({ view, params }: HttpContextContract) {
+    const { slug } = params
+    const article = await Database.from('articles').where('slug', slug).first()
+    // return article
+    return view.render('article/edit', { article })
+  }
+
+  public async update() {
+    console.log('teste update');
+  }
 }
