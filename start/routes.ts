@@ -9,6 +9,7 @@ Route.get('/news/create', 'ArticlesController.create').as('news_create')
 Route.post('/news/store', 'ArticlesController.store').as('news_store')
 Route.get('/news/:slug/edit', 'ArticlesController.edit').as('news_edit')
 Route.patch('/news/:slug', 'ArticlesController.update').as('news_update')
+Route.delete('/news/:slug','ArticlesController.destroy').as('news_delete')
 
 // .where('id', { match: /^[0-9]+$/, cast: (id) => Number(id) })
 // .as('news_update')
