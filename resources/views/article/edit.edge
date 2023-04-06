@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="m-auto mt-5">
-    <form action="{{ route('news_update', [article.slug]) }}" method="POST" class="container col-lg-6">
+    <form action="{{ route('news_update', [article.slug]) }}?_method=PATCH" method="POST" class="container col-lg-6">
       <h1>Edit article</h1>
       {{ csrfField() }}
 
@@ -31,7 +31,7 @@
       @end
 
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary mb-3 block flex">Save</button>
+        <button type="submit" class="btn btn-primary mb-3 block flex">Update</button>
       </div>
     </form>
   </div>

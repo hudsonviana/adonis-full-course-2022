@@ -48,7 +48,7 @@ export const http: ServerConfig = {
   | so on.
   |
   */
-  allowMethodSpoofing: false,
+  allowMethodSpoofing: true,
 
   /*
   |--------------------------------------------------------------------------
@@ -213,5 +213,4 @@ export const profiler: ProfilerConfig = {
 | to the default config https://git.io/JT0WE
 |
 */
-export const validator: ValidatorConfig = {
-}
+export const validator: ValidatorConfig = {}

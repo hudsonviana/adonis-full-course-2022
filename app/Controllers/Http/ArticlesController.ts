@@ -26,7 +26,12 @@ export default class ArticlesController {
     return view.render('article/edit', { article })
   }
 
-  public async update() {
-    console.log('teste update');
+  public async update({ request, response, params }: HttpContextContract) {
+    const { slug } = params
+    // const article = await Database.from('articles').where('slug', slug).first()
+    const payload = await request.validate(CreateArticleValidator)
+    await Database.from('articles').where('slug', slug).update(payload)
+    // return affectedRows
+    return response.redirect().back()
   }
 }
