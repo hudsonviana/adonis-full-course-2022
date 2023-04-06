@@ -4,7 +4,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 
 export default class ArticlesController {
-  public async view({ view }: HttpContextContract) {
+  public async index({ view }: HttpContextContract) {
     const articles = await Database.from('articles').select('*')
     return view.render('article/view', { articles })
   }
