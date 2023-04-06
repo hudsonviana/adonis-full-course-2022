@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import slugify from 'slugify'
-
 import Database from '@ioc:Adonis/Lucid/Database'
 import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 
@@ -8,6 +7,12 @@ export default class ArticlesController {
   public async index({ view }: HttpContextContract) {
     const articles = await Database.from('articles').select('*')
     return view.render('article/view', { articles })
+  }
+
+  public async show({ view, params }: HttpContextContract) {
+    const { slug } = params
+    const article = await Database.from('articles').where('slug', slug).first()
+    return view.render('article/show', { article })
   }
 
   public async create({ view }: HttpContextContract) {
