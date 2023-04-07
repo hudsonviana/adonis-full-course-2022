@@ -26,7 +26,7 @@ export default class CreateArticleValidator {
   public schema = schema.create({
     title: schema.string([rules.unique({ table: 'articles', column: 'title' })]),
     content: schema.string(),
-    image: schema.string.nullable(),
+    image: schema.string(),
     // slug: schema.string.nullableAndOptional([rules.unique({ table: 'articles', column: 'slug' })]),
   })
 
