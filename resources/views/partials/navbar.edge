@@ -11,17 +11,23 @@
         </li>
         @if(auth.isLoggedIn)
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="{{ route('news.create') }}">Create</a>
+          </li>
+          <li class="nav-item">
+          <form action="{{ route('auth.logout') }}" method="POST">
+            {{ csrfField() }}
+            <button type="submit" class="nav-link">Logout</button>
+          </form>
           </li>
         @else
           <li class="nav-item">
             <a class="nav-link" href="{{ route('auth.signin') }}">Login</a>
           </li>
         @endif
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('news.create') }}">Create</a>
-        </li>
       </ul>
+    </div>
+    <div>
+      <small class="text-white">{{ moment().locale('pt-br').format('dddd, D [de] MMMM [de] YYYY') }}</small>
     </div>
   </div>
 </nav>

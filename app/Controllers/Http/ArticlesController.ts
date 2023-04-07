@@ -1,21 +1,22 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 import Article from 'App/Models/Article'
+import moment from 'moment'
 
 export default class ArticlesController {
   public async index({ view }: HttpContextContract) {
     const articles = await Article.all()
-    return view.render('article/view', { articles })
+    return view.render('article/view', { articles, moment })
   }
 
   public async show({ view, params }: HttpContextContract) {
     const { slug } = params
     const article = await Article.findByOrFail('slug', slug)
-    return view.render('article/show', { article })
+    return view.render('article/show', { article, moment })
   }
 
   public async create({ view }: HttpContextContract) {
-    return view.render('article/create')
+    return view.render('article/create', { moment })
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -27,7 +28,7 @@ export default class ArticlesController {
   public async edit({ view, params }: HttpContextContract) {
     const { slug } = params
     const article = await Article.findByOrFail('slug', slug)
-    return view.render('article/edit', { article })
+    return view.render('article/edit', { article, moment })
   }
 
   public async update({ request, response, params }: HttpContextContract) {
