@@ -9,6 +9,15 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('news.index') }}">News</a>
         </li>
+        @if(auth.isLoggedIn)
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        @else
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('auth.signin') }}">Login</a>
+          </li>
+        @endif
         <li class="nav-item">
           <a class="nav-link" href="{{ route('news.create') }}">Create</a>
         </li>
