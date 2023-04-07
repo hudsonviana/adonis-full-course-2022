@@ -1,6 +1,4 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import slugify from 'slugify'
-import Database from '@ioc:Adonis/Lucid/Database'
 import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 import Article from 'App/Models/Article'
 
@@ -22,14 +20,8 @@ export default class ArticlesController {
 
   public async store({ request, response }: HttpContextContract) {
     const payload = await request.validate(CreateArticleValidator)
-
     await Article.create(payload)
-
-    // await Database.table('articles').insert({
-    //   ...payload,
-    //   slug: slugify(payload.title, { lower: true, locale: 'pt' }),
-    // })
-    response.redirect('/news')
+    return response.redirect('/news')
   }
 
   public async edit({ view, params }: HttpContextContract) {
@@ -40,9 +32,10 @@ export default class ArticlesController {
 
   public async update({ request, response, params }: HttpContextContract) {
     const { slug } = params
+    const article = await Article.findByOrFail('slug', slug)
     const payload = await request.validate(CreateArticleValidator)
-    await Database.from('articles').where('slug', slug).update(payload)
-    return response.redirect().back()
+    await article.merge(payload).save()
+    return response.redirect('/news')
   }
 
   public async destroy({ response, params }: HttpContextContract) {
